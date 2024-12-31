@@ -1,70 +1,60 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Node from "./node";
 import Line from "./line";
 import BinarySearchTree from "./BinarySearchTree";
 
+const BinaryTreeComponent = () => {
+    // Initialize the binary search tree
+    const [bst, setBst] = useState(() => {
+        let initialBst = new BinarySearchTree();
+        console.log(initialBst.inorder());
+        return initialBst;
+    });
 
-class BinaryTreeComponent extends Component {
-	constructor() {
-		super();
-		let bst = new BinarySearchTree();
-		// bst.initSample();
-		console.log(bst.inorder());
+    // Initialize the new value
+    const [newVal, setNewVal] = useState("");
 
-		this.state = { bst: bst, initH: 50 * bst.getHeight() };
-		this.newval = -1;
-	}
-	render() {
-		// console.log("Render for Tree");
-		return (
-			<React.Fragment>
-				<h1>Tree</h1>
-				<input
-					type="number"
-					onChange={(event) => {
-						this.newval = Number(event.target.value);
-					}}
-				/>
-				<button
-					className="btn btn-primary m-2"
-					onClick={this.addNewVal}
-				>
-					Add
-				</button>
-				<div style={{ position: "relative" }}>
-					{this.state.bst.inorder().map((treenode) => {
-						return (
-							<React.Fragment>
-								<Line
-									key={"_" + treenode.keystr}
-									node={treenode}
-									initH={this.state.initH}
-								/>
-								<Node
-									key={treenode.keystr}
-									node={treenode}
-									initH={this.state.initH}
-								/>
-							</React.Fragment>
-						);
-					})}
-				</div>
-			</React.Fragment>
-		);
-	}
+    // Function to add a new value to the tree
+    const addNewVal = () => {
+        let newBst = bst.clone();
+        newBst.insert(newVal);
+        console.log(newBst);
+        setBst(newBst);
+		setNewVal("");
+    };
 
-	addNewVal = () => {
-		let newbst = this.state.bst.clone();
-		newbst.insert(this.newval);
-		console.log(newbst);
-		this.setState({ bst: newbst, initH: 50 * newbst.getHeight() });
-		let inputbox = document.querySelector("input");
-		inputbox.value = "";
-		inputbox.style.fontSize = newbst.width * 4;
-		inputbox.style.height = newbst.width * 20;
-		inputbox.style.width = newbst.width * 100;
-	};
-}
+    return (
+        <React.Fragment>
+            <h1>Tree</h1>
+            <input
+                type="number"
+                onChange={(event) => {
+                    setNewVal(Number(event.target.value));
+                }}
+				value={newVal}
+            />
+            <button
+                className="btn btn-primary m-2"
+                onClick={addNewVal}
+            >
+                Add
+            </button>
+            <div style={{ position: "relative" }}>
+                {bst.inorder().map((treenode) => (
+                    <React.Fragment key={treenode.keystr}>
+                        <Line
+                            node={treenode}
+                            initH={50 * bst.getHeight()}
+                        />
+                        <Node
+                            node={treenode}
+                            initH={50 * bst.getHeight()}
+                        />
+                    </React.Fragment>
+                ))}
+            </div>
+        </React.Fragment>
+    );
+};
 
 export default BinaryTreeComponent;
-

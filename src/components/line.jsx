@@ -1,45 +1,37 @@
-import React, { Component } from "react";
+import React, { useMemo } from "react";
 
-class Line extends Component {
-	state = {};
-	setStyles() {
+const Line = ({ node, initH }) => {
+	const styles = useMemo(() => {
 		let R = 35;
 		let r = 0.9;
-		if (this.props.node.parent === null) {
-			return;
+		if (node.parent === null) {
+			return {};
 		}
-		this.x1 = this.props.node.hpos * 80;
-		this.y1 =
-			(this.props.initH * (1 - Math.pow(r, this.props.node.row))) /
-			(1 - r);
-		this.x2 = this.props.node.parent.hpos * 80;
-		this.y2 =
-			(this.props.initH * (1 - Math.pow(r, this.props.node.parent.row))) /
-			(1 - r);
+		let x1 = node.hpos * 80;
+		let y1 = (initH * (1 - Math.pow(r, node.row))) / (1 - r);
+		let x2 = node.parent.hpos * 80;
+		let y2 = (initH * (1 - Math.pow(r, node.parent.row))) / (1 - r);
 
-		this.angle = Math.atan((this.y2 - this.y1) / (this.x2 - this.x1));
+		let angle = Math.atan((y2 - y1) / (x2 - x1));
 
-		this.x1 += R * (1 - Math.cos(this.angle));
-		this.y1 += R * (1 - Math.sin(this.angle));
-		this.x2 += R * (1 + Math.cos(this.angle));
-		this.y2 += R * (1 + Math.sin(this.angle));
-		
-		this.styles = {
-			width: Math.abs(this.x2 - this.x1),
+		x1 += R * (1 - Math.cos(angle));
+		y1 += R * (1 - Math.sin(angle));
+		x2 += R * (1 + Math.cos(angle));
+		y2 += R * (1 + Math.sin(angle));
+
+		return {
+			width: Math.abs(x2 - x1),
 			height: 0,
 			borderTop: "2px solid black",
 			position: "absolute",
-			left: Math.min(this.x2, this.x1),
-			top: (this.y2 + this.y1) / 2,
-			transform: `skewY(${(this.angle * 180) / Math.PI}deg)`,
+			left: Math.min(x2, x1),
+			top: (y2 + y1) / 2,
+			transform: `skewY(${(angle * 180) / Math.PI}deg)`,
 		};
-	}
+	}, [node, initH]);
 
-	render() {
-		this.setStyles();
-		if (this.props.node.parent) return <div style={this.styles}></div>;
-		else return <React.Fragment />;
-	}
-}
+	if (node.parent) return <div style={styles}></div>;
+	else return <React.Fragment />;
+};
 
 export default Line;
