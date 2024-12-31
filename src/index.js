@@ -1,12 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
-// import App from "./App";
+import ReactDOM from "react-dom/client"; // Updated import statement
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import BinaryTreeComponent from "./components/binarytree";
 
-ReactDOM.render(
-	<React.StrictMode>
-		<BinaryTreeComponent />
-	</React.StrictMode>,
-	document.getElementById("root")
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <React.StrictMode>
+        <BinaryTreeComponent />
+    </React.StrictMode>
 );
