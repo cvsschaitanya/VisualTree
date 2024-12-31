@@ -19,11 +19,11 @@ class Line extends Component {
 
 		this.angle = Math.atan((this.y2 - this.y1) / (this.x2 - this.x1));
 
-		this.x1 += R * (1 + Math.cos(this.angle));
-		this.y1 += R * (1 + Math.sin(this.angle));
+		this.x1 += R * (1 - Math.cos(this.angle));
+		this.y1 += R * (1 - Math.sin(this.angle));
 		this.x2 += R * (1 + Math.cos(this.angle));
 		this.y2 += R * (1 + Math.sin(this.angle));
-
+		
 		this.styles = {
 			width: Math.abs(this.x2 - this.x1),
 			height: 0,
