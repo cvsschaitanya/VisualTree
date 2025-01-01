@@ -1,7 +1,7 @@
 import React from "react";
 
 const Node = (props) => {
-	const r = 0.9;
+	
 
 	const styles = {
 		height: 70,
@@ -14,7 +14,7 @@ const Node = (props) => {
 		alignContent: "center",
 		flexDirection: "column",
 		position: "absolute",
-		top: (props.initH * (1 - Math.pow(r, props.node.row))) / (1 - r),
+		top: (props.initH * (1 - Math.pow(props.r, props.node.row))) / (1 - props.r),
 		left: props.node.hpos * 80,
 	};
 
