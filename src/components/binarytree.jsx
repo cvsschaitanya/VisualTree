@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Node from "./node";
 import Line from "./line";
-import BinarySearchTree from "./BinarySearchTree";
+import BinarySearchTree from "../dataStructure/BinarySearchTree";
 
 const BinaryTreeComponent = () => {
     // Initialize the binary search tree
