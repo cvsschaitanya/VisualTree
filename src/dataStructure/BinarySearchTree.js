@@ -49,6 +49,16 @@ function BinarySearchTree() {
 		return inorder(this.tree);
 	};
 
+	function preorder(tree) {
+		return tree === null
+			? []
+			: [tree].concat(preorder(tree.left).concat(preorder(tree.right)));
+	}
+	this.preorder = () => {
+		return preorder(this.tree);
+	};
+
+
 	function getHeight(tree) {
 		if (tree === null) return -1;
 		else {
@@ -118,6 +128,30 @@ function BinarySearchTree() {
 		this.insert(8);
 		this.insert(5);
 	};
+
+	function balanceTree(nodes, start, end){
+		
+		if(start>end){
+			return null;
+		}
+		
+		let mid =  Math.floor(start+end)/2;
+		let node = nodes[mid];
+
+		node.left = balanceTree(nodes, start, mid-1);
+		node.right = balanceTree(nodes, mid+1,end);
+		
+		return node;
+		
+	}
+	this.balanceBST = () => {
+		let nodes = tree.inorder();
+		balanceTree(nodes,0,nodes.length-1);
+		tree.eval(); 
+	}
+
+
+
 }
 
 export default BinarySearchTree;
