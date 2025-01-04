@@ -48,7 +48,7 @@ const BinaryTreeComponent = () => {
                             initH={50 * bst.getHeight()}    
                         />
                         <Node
-                            const r= {0.9}
+                            let r = {0.9}
                             node={treenode}
                             initH={50 * bst.getHeight()}
                         />
