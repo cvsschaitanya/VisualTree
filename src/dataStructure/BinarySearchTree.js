@@ -52,7 +52,7 @@ function BinarySearchTree() {
 	function preorder(tree) {
 		return tree === null
 			? []
-			: [tree].concat(preorder(tree.left).concat(preorder(tree.right)));
+			: ([tree]).concat(preorder(tree.left)).concat(preorder(tree.right));
 	}
 	this.preorder = () => {
 		return preorder(this.tree);
@@ -90,11 +90,11 @@ function BinarySearchTree() {
 
 	function evalTree(bigtree, row, col, low, high, keystr) {
 		if (bigtree === null) return;
-
 		bigtree.row = row;
 		bigtree.col = col;
 		bigtree.hpos = (low + high) / 2;
 		bigtree.keystr = keystr;
+		// if(bigtree.left!==null) bigtree.left.parent = bigtree;
 		evalTree(
 			bigtree.left,
 			row + 1,
@@ -103,6 +103,7 @@ function BinarySearchTree() {
 			bigtree.hpos - 1,
 			keystr + "L"
 		);
+		// if(bigtree.right!==null) bigtree.right.parent = bigtree;
 		evalTree(
 			bigtree.right,
 			row + 1,
@@ -135,20 +136,20 @@ function BinarySearchTree() {
 			return null;
 		}
 		
-		let mid =  Math.floor(start+end)/2;
-		let node = nodes[mid];
+		let mid =  Math.floor((start+end)/2);  // 1 2 3 4 5 6
+		let node = nodes[mid];                 // 0 1 2 3 4 5 
 
 		node.left = balanceTree(nodes, start, mid-1);
 		node.right = balanceTree(nodes, mid+1,end);
-		
+
 		return node;
 		
 	}
 	this.balanceBST = () => {
-		let nodes = tree.inorder();
+		let nodes = this.inorder();
 		balanceTree(nodes,0,nodes.length-1);
-		tree.eval(); 
-	}
+		this.eval(); 
+	};
 
 
 

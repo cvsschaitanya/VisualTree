@@ -2,16 +2,29 @@ import BinarySearchTree from "../dataStructure/BinarySearchTree.js";
 
 let bst = new BinarySearchTree();
 
-bst.insert(4);
-bst.insert(3);
-bst.insert(5);
-bst.insert(2);
-bst.insert(6);
 bst.insert(1);
-bst.insert(7);
+bst.insert(2);
+bst.insert(3);
+bst.insert(4);
+bst.insert(5);
+bst.insert(6);
 
-bst.insert(10);
+let inOrderValues = [];
+for(let node of bst.inorder()){
+    inOrderValues.push(node.value);
+    
+}
 
+console.log(inOrderValues);
+bst.balanceBST();
+
+let newInOrderValues = [];
+for(let node of bst.inorder()){
+    newInOrderValues.push(node.value);
+    
+}
+
+console.log(newInOrderValues);
 
 let preOrderValues = [];
 for(let node of bst.preorder()){
@@ -19,4 +32,6 @@ for(let node of bst.preorder()){
     
 }
 
-console.assert(JSON.stringify(preOrderValues)===JSON.stringify([]));
+console.log(preOrderValues);
+
+console.assert(JSON.stringify(preOrderValues)===JSON.stringify([3,2,1,5,4,6]));
