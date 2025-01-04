@@ -43,14 +43,14 @@ const BinaryTreeComponent = () => {
                 {bst.inorder().map((treenode) => (
                     <React.Fragment key={treenode.keystr}>
                         <Line
-                            const r= {0.9}
-                            node={treenode}
-                            initH={50 * bst.getHeight()}    
+                            r = {0.9}
+                            node = {treenode}
+                            initH = {50 * bst.getHeight()}    
                         />
                         <Node
-                            let r = {0.9}
-                            node={treenode}
-                            initH={50 * bst.getHeight()}
+                            r = {0.9}
+                            node = {treenode}
+                            initH = {50 * bst.getHeight()}
                         />
                     </React.Fragment>
                 ))}
