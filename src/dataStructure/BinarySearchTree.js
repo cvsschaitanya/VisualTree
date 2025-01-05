@@ -40,6 +40,26 @@ function BinarySearchTree() {
 		this.eval();
 	};
 
+	function removeElement(tree,key){
+		if(tree === null) {
+
+			console.log("Empty Tree");
+			return;
+
+		}
+
+		
+
+	}
+
+
+
+
+
+
+
+
+
 	function inorder(tree) {
 		return tree === null
 			? []

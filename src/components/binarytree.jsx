@@ -54,6 +54,13 @@ const BinaryTreeComponent = () => {
                 Balance
             </button>
 
+            <button
+                className="btn btn-warning m-2"
+                // onClick={}
+            >
+                Remove
+            </button>
+
             <div style={{ position: "relative" }}>
                 {bst.inorder().map((treenode) => (
                     <React.Fragment key={treenode.keystr}>
