@@ -12,8 +12,9 @@ bst.insert(6);
 let inOrderValues = [];
 for(let node of bst.inorder()){
     inOrderValues.push(node.value);
-    
+
 }
+
 
 console.log(inOrderValues);
 bst.balanceBST();
@@ -29,9 +30,9 @@ console.log(newInOrderValues);
 let preOrderValues = [];
 for(let node of bst.preorder()){
     preOrderValues.push(node.value);
-    
+    if(node.parent!==null) console.log(node.value , node.parent.value);
 }
 
 console.log(preOrderValues);
 
-console.assert(JSON.stringify(preOrderValues)===JSON.stringify([3,2,1,5,4,6]));
+console.assert(JSON.stringify(preOrderValues)===JSON.stringify([3,1,2,5,4,6]));
