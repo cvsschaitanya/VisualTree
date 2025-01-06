@@ -49,6 +49,16 @@ function BinarySearchTree() {
 		return inorder(this.tree);
 	};
 
+	function preorder(tree) {
+		return tree === null
+			? []
+			: ([tree]).concat(preorder(tree.left)).concat(preorder(tree.right));
+	}
+	this.preorder = () => {
+		return preorder(this.tree);
+	};
+
+
 	function getHeight(tree) {
 		if (tree === null) return -1;
 		else {
@@ -80,11 +90,11 @@ function BinarySearchTree() {
 
 	function evalTree(bigtree, row, col, low, high, keystr) {
 		if (bigtree === null) return;
-
 		bigtree.row = row;
 		bigtree.col = col;
 		bigtree.hpos = (low + high) / 2;
 		bigtree.keystr = keystr;
+		if(bigtree.left!==null) bigtree.left.parent = bigtree;
 		evalTree(
 			bigtree.left,
 			row + 1,
@@ -93,6 +103,7 @@ function BinarySearchTree() {
 			bigtree.hpos - 1,
 			keystr + "L"
 		);
+		if(bigtree.right!==null) bigtree.right.parent = bigtree;
 		evalTree(
 			bigtree.right,
 			row + 1,
@@ -118,6 +129,37 @@ function BinarySearchTree() {
 		this.insert(8);
 		this.insert(5);
 	};
+
+	function balanceTree(nodes, start, end){
+		
+		if(start>end){
+			return null;
+		}
+		
+		let mid =  Math.floor((start+end)/2);  
+		let node = nodes[mid];                 
+
+		node.left = balanceTree(nodes, start, mid-1);
+		
+		node.right = balanceTree(nodes, mid+1, end);
+		
+		
+		return node;
+		
+	}
+	this.balanceBST = () => {
+
+		let nodes = this.inorder();
+		
+		this.tree = balanceTree(nodes,0,nodes.length-1);
+		this.eval();
+		this.tree.parent = null;
+	
+		 
+	};
+
+
+
 }
 
 export default BinarySearchTree;

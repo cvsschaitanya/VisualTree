@@ -23,6 +23,13 @@ const BinaryTreeComponent = () => {
 		setNewVal("");
     };
 
+
+    const balanceBinaryTree = () => {
+        let newBst = bst.clone();
+        newBst.balanceBST();
+        setBst(newBst);
+    };
+
     return (
         <React.Fragment>
             <h1>Tree</h1>
@@ -39,6 +46,14 @@ const BinaryTreeComponent = () => {
             >
                 Add
             </button>
+
+            <button
+                className="btn btn-danger m-2"
+                onClick={balanceBinaryTree}
+            >
+                Balance
+            </button>
+
             <div style={{ position: "relative" }}>
                 {bst.inorder().map((treenode) => (
                     <React.Fragment key={treenode.keystr}>
