@@ -1,4 +1,4 @@
-import BinarySearchTree from "../dataStructure/BinarySearchTree.js";
+import BinarySearchTree from "../../dataStructure/BinarySearchTree.js";
 
 let bst = new BinarySearchTree();
 

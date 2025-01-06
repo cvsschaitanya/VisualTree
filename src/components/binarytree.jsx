@@ -22,7 +22,7 @@ const BinaryTreeComponent = () => {
 
     const addNewVal = () => {
         let newBst = bst.clone();
-        newBst.insert(newVal);
+        if(newVal!=="") newBst.insert(newVal);
         console.log(newBst);
         setBst(newBst);
 		setNewVal("");
@@ -60,7 +60,7 @@ const BinaryTreeComponent = () => {
             />
             
             <button
-                className="btn btn-primary m-2"
+                className="btn btn-success m-2"
                 onClick={addNewVal}
             >
                 Add
@@ -68,17 +68,19 @@ const BinaryTreeComponent = () => {
 
             <button
                 className="btn btn-danger m-2"
+                onClick={removeNode}
+            >
+                Remove
+            </button>
+
+            <button
+                className="btn btn-warning m-2"
                 onClick={balanceBinaryTree}
             >
                 Balance
             </button>
 
-            <button
-                className="btn btn-warning m-2"
-                onClick={removeNode}
-            >
-                Remove
-            </button>
+           
 
             <div style={{ position: "relative" }}>
                 {bst.inorder().map((treenode) => (

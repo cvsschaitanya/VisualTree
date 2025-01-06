@@ -4,27 +4,38 @@ function BinarySearchTree() {
 	//function to insert an element
 
 	function insert(tree, key) {
-		if (key < tree.value) {
-			if (tree.left) {
-				insert(tree.left, key);
+		
+		// if(key===null){
+		// 	console.log("Please Enter a valid number.");
+		// 	return; 
+		// } 
+		if(tree!==null && isPresent(tree,key)){
+			alert("Element already exists.");
+			return; 
+		}
+		else{
+			if (key < tree.value) {
+				if (tree.left) {
+					insert(tree.left, key);
+				} else {
+					tree.left = {
+						value: key,
+						left: null,
+						right: null,
+						parent: tree,
+					};
+				}
 			} else {
-				tree.left = {
-					value: key,
-					left: null,
-					right: null,
-					parent: tree,
-				};
-			}
-		} else {
-			if (tree.right) {
-				insert(tree.right, key);
-			} else {
-				tree.right = {
-					value: key,
-					left: null,
-					right: null,
-					parent: tree,
-				};
+				if (tree.right) {
+					insert(tree.right, key);
+				} else {
+					tree.right = {
+						value: key,
+						left: null,
+						right: null,
+						parent: tree,
+					};
+				}
 			}
 		}
 	}
@@ -214,6 +225,31 @@ function BinarySearchTree() {
 		this.tree.parent = null;
 
 	};
+
+	function isPresent(tree,key){
+		
+		if(tree===null){
+			return false;
+		}
+		
+		else if(key===tree.value){
+			return true;
+		}
+		else if(key>tree.value){
+			return isPresent(tree.right,key);
+		}
+		else{
+			return isPresent(tree.left,key);
+		}
+
+	}
+	this.isPresent = (key) => {
+		
+		
+		return isPresent(this.tree,key);
+	};
+
+
 
 }
 
