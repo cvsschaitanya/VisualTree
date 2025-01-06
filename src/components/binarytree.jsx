@@ -30,6 +30,13 @@ const BinaryTreeComponent = () => {
         setBst(newBst);
     };
 
+    const removeNode = () => {
+        let newBst = bst.clone();
+        newBst.remove(newVal);
+        setBst(newBst);
+        setNewVal("");
+    };
+
     return (
         <React.Fragment>
             <h1>Tree</h1>
@@ -56,7 +63,7 @@ const BinaryTreeComponent = () => {
 
             <button
                 className="btn btn-warning m-2"
-                // onClick={}
+                onClick={removeNode}
             >
                 Remove
             </button>
