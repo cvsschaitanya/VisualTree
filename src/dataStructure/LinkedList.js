@@ -27,6 +27,16 @@ function LinkedList(){
         }
 
     }
+  
+    this.display = () =>{
+        let temp = this.head ;
+        let elements = [];
+        while(temp!==null){
+            elements.push(temp.val);
+            temp = temp.next;
+        }
+        return elements;
+    }
 }
 
 export default  LinkedList;

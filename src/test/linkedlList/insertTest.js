@@ -12,7 +12,6 @@ list.insert(6);
 
 let temp = list.head;
 
-while(temp!== null){
-    console.log(temp.val);
-    temp = temp.next;
-}
+
+
+console.log(list.display());
