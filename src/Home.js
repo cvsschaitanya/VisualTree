@@ -12,24 +12,21 @@ const Home = () => {
     
     return(
         <div>
-        {/* {showTree || showLL || showStack || showQueue ? ( */}
-            {showTree ? (
-            <>
-                {showTree && <BinaryTreeComponent />}
-                {/* {showLL && <BinaryTreeComponent />}
-                {showStack && <BinaryTreeComponent />}
-                {showQueue && <BinaryTreeComponent />} */}
-            </>
-        ) : (
             <div>
-                <h1>Choose Data Structure</h1>
-                <button onClick={goToTree}>Binary Tree</button>
-                {/* <button onClick={goToLL}>Linked List</button>
-                <button onClick={goToStack}>Stack</button>
-                <button onClick={goToQueue}>Queue</button> */}
+            
+                {
+                    showTree ?  <BinaryTreeComponent/> : 
+                                    showLL : <LinkedListComponent/>
+                    
+                    
+                    
+                }
+
+
             </div>
-        )}
-    </div>
+
+
+        </div>
             );
         
       
